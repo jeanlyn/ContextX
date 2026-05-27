@@ -1,3 +1,4 @@
+/// <reference lib="dom" />
 import { Thread, Message } from './models.js';
 import { ThreadNotFoundError } from '../exceptions.js';
 

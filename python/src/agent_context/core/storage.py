@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import uuid
 from abc import ABC, abstractmethod
-from datetime import datetime
+from datetime import UTC, datetime
 
 from agent_context.core.models import Message, Thread
 from agent_context.exceptions import ThreadNotFoundError
@@ -52,7 +52,7 @@ class InMemoryStorage(Storage):
         if thread is None:
             raise ThreadNotFoundError(thread_id)
         thread.messages.append(message)
-        thread.updated_at = datetime.utcnow()
+        thread.updated_at = datetime.now(UTC)
 
     async def delete_thread(self, thread_id: str) -> None:
         if thread_id not in self._threads:
